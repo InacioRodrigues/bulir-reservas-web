@@ -1,9 +1,9 @@
 import { expect, test } from '@playwright/test'
-import { loginWithDemo } from './helpers.ts'
+import { login } from './helpers.ts'
 
 test('prestador cria, edita e exclui um serviço', async ({ page }) => {
   const name = `Serviço E2E ${Date.now()}`
-  await loginWithDemo(page, /Prestadora/)
+  await login(page, 'carla.prestadora@bulir.demo')
   await expect(page).toHaveURL(/\/meus-servicos/)
 
   await page.getByRole('button', { name: 'Novo serviço' }).click()

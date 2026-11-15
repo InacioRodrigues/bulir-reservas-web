@@ -1,8 +1,12 @@
 import { expect, type Page } from '@playwright/test'
 
-export async function loginWithDemo(page: Page, account: RegExp) {
+/** Contas do seed da API (ver README da API). */
+export const DEMO_PASSWORD = 'Senha@123'
+
+export async function login(page: Page, identifier: string, password = DEMO_PASSWORD) {
   await page.goto('/login')
-  await page.getByRole('button', { name: account }).click()
+  await page.getByLabel('E-mail ou NIF').fill(identifier)
+  await page.getByLabel('Senha', { exact: true }).fill(password)
   await page.getByRole('button', { name: 'Entrar' }).click()
   await expect(page).not.toHaveURL(/\/login/)
 }

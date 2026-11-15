@@ -1,8 +1,8 @@
 import { expect, test } from '@playwright/test'
-import { loginWithDemo, readBalanceCents } from './helpers.ts'
+import { login, readBalanceCents } from './helpers.ts'
 
 test('cliente carrega saldo, contrata um serviço e vê-o no histórico', async ({ page }) => {
-  await loginWithDemo(page, /Cliente com saldo/)
+  await login(page, 'ana.cliente@bulir.demo')
   await expect(page).toHaveURL(/\/servicos/)
 
   // Garante saldo suficiente para o teste ser repetível.
