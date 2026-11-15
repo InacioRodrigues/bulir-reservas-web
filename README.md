@@ -34,18 +34,18 @@ pesquisa e filtros no URL (partilháveis), sessões sincronizadas entre separado
 
 ## Stack e porquê
 
-| Escolha                                            | Porquê                                                                                                                                          |
-| -------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Vite + React 19 + TypeScript (strict)**          | É uma SPA autenticada, sem SEO nem SSR: Vite é mais simples e rápido que Next.js. Next faria sentido com páginas públicas indexáveis ou BFF.    |
-| **TanStack Query**                                 | Estado do **servidor** (serviços, reservas, saldo): cache, estados de loading/erro, `keepPreviousData` na paginação, invalidação após mutações. |
-| **Zustand** (`persist`)                            | Estado do **cliente**: tokens + snapshot do utilizador e preferência de tema. Pequeno, sem boilerplate, acessível fora de React (interceptors). |
-| **Axios** + interceptors                           | Bearer automático, refresh do token em 401, erros normalizados num único `ApiError`.                                                            |
-| **React Hook Form + zod**                          | Formulários performantes e schemas que espelham as regras do contrato (e normalizam NIF, e-mail e dinheiro).                                    |
-| **React Router** (data router, lazy)               | Guards por papel, code splitting por página, filtros/paginação no URL.                                                                          |
-| **Tailwind CSS v4 + shadcn/ui (Radix)**            | Componentes acessíveis (diálogos, menus, foco) que ficam no repositório e se adaptam ao design.                                                 |
-| **sonner**, **lucide-react**                       | Toasts e ícones.                                                                                                                                |
-| **Vitest + Testing Library + MSW**, **Playwright** | Testes de unidade/componentes com a rede simulada; E2E contra a API real.                                                                       |
-| **oxlint + Prettier**, husky + commitlint          | Lint rápido com regras de React/hooks/a11y; Conventional Commits.                                                                               |
+| Escolha                                            | Porquê                                                                                                                                                      |
+| -------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Vite + React 19 + TypeScript (strict)**          | É uma SPA autenticada, sem SEO nem SSR: Vite é mais simples e rápido que Next.js. Next faria sentido com páginas públicas indexáveis ou BFF.                |
+| **TanStack Query**                                 | Estado do **servidor** (serviços, reservas, saldo): cache, estados de loading/erro, `keepPreviousData` na paginação, invalidação após mutações.             |
+| **Zustand** (`persist`)                            | Estado do **cliente**: tokens + snapshot do utilizador e preferência de tema. Pequeno, com pouco código repetitivo, acessível fora de React (interceptors). |
+| **Axios** + interceptors                           | Bearer automático, refresh do token em 401, erros normalizados num único `ApiError`.                                                                        |
+| **React Hook Form + zod**                          | Formulários performantes e schemas que espelham as regras do contrato (e normalizam NIF, e-mail e dinheiro).                                                |
+| **React Router** (data router, lazy)               | Guards por papel, code splitting por página, filtros/paginação no URL.                                                                                      |
+| **Tailwind CSS v4 + shadcn/ui (Radix)**            | Componentes acessíveis (diálogos, menus, foco) que ficam no repositório e se adaptam ao design.                                                             |
+| **sonner**, **lucide-react**                       | Toasts e ícones.                                                                                                                                            |
+| **Vitest + Testing Library + MSW**, **Playwright** | Testes de unidade/componentes com a rede simulada; E2E contra a API real.                                                                                   |
+| **oxlint + Prettier**, husky + commitlint          | Lint rápido com regras de React/hooks/a11y; Conventional Commits.                                                                                           |
 
 ## Arquitetura
 
