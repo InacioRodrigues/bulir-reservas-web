@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { compareMoney, normalizeMoneyInput, toCents } from '@/shared/lib/money'
+import { compareMoney, isMoney, normalizeMoneyInput, toCents } from '@/shared/lib/money'
 
 /**
  * Schemas zod com as MESMAS regras do contrato/backend. Validam no cliente para dar
@@ -37,9 +37,13 @@ export function moneyField(label: string, max: string) {
         .string()
         .min(1, `Indique o ${label}`)
         .regex(MONEY_INPUT, `O ${label} deve ser um número com até 2 casas decimais`)
-        .refine((value) => toCents(value) > 0n, `O ${label} deve ser maior que 0`)
+        // Os refines do zod 4 correm mesmo se o regex falhou: guardamos com isMoney().
         .refine(
-          (value) => compareMoney(value, max) <= 0,
+          (value) => !isMoney(value) || toCents(value) > 0n,
+          `O ${label} deve ser maior que 0`,
+        )
+        .refine(
+          (value) => !isMoney(value) || compareMoney(value, max) <= 0,
           `O ${label} não pode ultrapassar ${Number(max).toLocaleString('pt-AO')} Kz`,
         ),
     )
@@ -128,7 +132,8 @@ const optionalPrice = z
 export const priceRangeSchema = z
   .object({ minPrice: optionalPrice, maxPrice: optionalPrice })
   .refine(
-    ({ minPrice, maxPrice }) => !minPrice || !maxPrice || compareMoney(minPrice, maxPrice) <= 0,
+    ({ minPrice, maxPrice }) =>
+      !isMoney(minPrice) || !isMoney(maxPrice) || compareMoney(minPrice, maxPrice) <= 0,
     { path: ['maxPrice'], message: 'O máximo deve ser maior ou igual ao mínimo' },
   )
 
