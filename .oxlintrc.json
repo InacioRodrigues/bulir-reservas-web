@@ -1,13 +1,6 @@
 {
   "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": [
-    "react",
-    "typescript",
-    "oxc",
-    "import",
-    "jsx-a11y",
-    "vitest"
-  ],
+  "plugins": ["react", "typescript", "oxc", "import", "jsx-a11y", "vitest"],
   "categories": {
     "correctness": "error",
     "suspicious": "warn"
@@ -25,35 +18,25 @@
     "no-console": [
       "warn",
       {
-        "allow": [
-          "warn",
-          "error"
-        ]
+        "allow": ["warn", "error"]
       }
     ],
     "react/react-in-jsx-scope": "off",
     "import/no-unassigned-import": [
       "warn",
       {
-        "allow": [
-          "**/*.css",
-          "@testing-library/jest-dom/vitest"
-        ]
+        "allow": ["**/*.css", "@testing-library/jest-dom/vitest"]
       }
-    ]
+    ],
+    "import/no-named-as-default-member": "off"
   },
   "overrides": [
     {
-      "files": [
-        "src/shared/ui/**"
-      ],
+      "files": ["src/shared/ui/**"],
       "rules": {
         "react/only-export-components": "off"
       }
     }
   ],
-  "ignorePatterns": [
-    "dist",
-    "coverage"
-  ]
+  "ignorePatterns": ["dist", "coverage"]
 }
