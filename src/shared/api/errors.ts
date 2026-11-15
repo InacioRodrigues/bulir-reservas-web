@@ -1,5 +1,5 @@
 import { isAxiosError } from 'axios'
-import type { ErrorEnvelope, FieldError } from '@/shared/contract/types'
+import type { ErrorCode, ErrorEnvelope, FieldError } from '@/shared/contract/types'
 
 /** Códigos extra gerados no cliente (sem resposta da API). */
 export type ClientErrorCode = 'NETWORK_ERROR' | 'TIMEOUT' | 'SESSION_EXPIRED' | 'UNKNOWN'
@@ -113,6 +113,11 @@ const MESSAGES: Record<string, string> = {
   NETWORK_ERROR: 'Sem ligação ao servidor. Verifique a sua ligação à internet.',
   TIMEOUT: 'O servidor demorou demasiado a responder. Tente novamente.',
   INTERNAL_SERVER_ERROR: 'Ocorreu um erro no servidor. Tente novamente mais tarde.',
+}
+
+/** Mensagem em português para um código conhecido. */
+export function messageForCode(code: ErrorCode | ClientErrorCode): string {
+  return MESSAGES[code] ?? 'Ocorreu um erro inesperado.'
 }
 
 /** Mensagem pronta a mostrar ao utilizador para qualquer erro. */

@@ -49,5 +49,21 @@ export function startSessionTabSync() {
   return () => window.removeEventListener('storage', onStorage)
 }
 
+/* Evento "sessão expirou" (refresh rejeitado pela API), para a UI avisar o utilizador. */
+const expiredListeners = new Set<() => void>()
+
+export function onSessionExpired(listener: () => void) {
+  expiredListeners.add(listener)
+  return () => {
+    expiredListeners.delete(listener)
+  }
+}
+
+/** Termina a sessão porque a API rejeitou o refresh token (expirado, revogado ou reutilizado). */
+export function expireSession() {
+  useSessionStore.getState().clear()
+  expiredListeners.forEach((listener) => listener())
+}
+
 export const selectIsAuthenticated = (state: SessionState) =>
   Boolean(state.accessToken && state.user)

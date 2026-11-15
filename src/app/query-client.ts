@@ -1,13 +1,5 @@
-import { MutationCache, QueryCache, QueryClient } from '@tanstack/react-query'
-import { toast } from 'sonner'
-import { getErrorMessage, toApiError } from '@/shared/api/errors'
-
-/** Avisa uma única vez quando o refresh falha e a sessão termina. */
-function notifySessionExpired(error: unknown) {
-  if (toApiError(error).is('SESSION_EXPIRED')) {
-    toast.error(getErrorMessage(error), { id: 'session-expired' })
-  }
-}
+import { QueryClient } from '@tanstack/react-query'
+import { toApiError } from '@/shared/api/errors'
 
 /**
  * Estado do SERVIDOR (serviços, reservas, saldo) vive aqui, não em stores globais.
@@ -16,8 +8,6 @@ function notifySessionExpired(error: unknown) {
  */
 export function createQueryClient() {
   return new QueryClient({
-    queryCache: new QueryCache({ onError: notifySessionExpired }),
-    mutationCache: new MutationCache({ onError: notifySessionExpired }),
     defaultOptions: {
       queries: {
         staleTime: 30_000,

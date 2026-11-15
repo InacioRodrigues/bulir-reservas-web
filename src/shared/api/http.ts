@@ -1,7 +1,7 @@
 import axios, { isAxiosError, type AxiosResponse, type InternalAxiosRequestConfig } from 'axios'
 import { env } from '@/shared/config/env'
 import type { AuthTokens, Paginated, SuccessEnvelope } from '@/shared/contract/types'
-import { useSessionStore } from '@/shared/session/session-store'
+import { expireSession, useSessionStore } from '@/shared/session/session-store'
 import { ApiError, toApiError } from './errors'
 
 /**
@@ -82,7 +82,7 @@ async function doRefresh(failedAccessToken: string | null): Promise<string> {
     const apiError = toApiError(error)
     // Só terminamos a sessão se a API rejeitou o refresh token; falhas de rede não deslogam.
     if (apiError.status === 401 || apiError.status === 400) {
-      useSessionStore.getState().clear()
+      expireSession()
       throw sessionExpired()
     }
     throw apiError
