@@ -14,9 +14,9 @@
     "format:check": "prettier --check .",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:cov": "vitest run --coverage",
     "check": "npm run typecheck && npm run lint && npm run format:check && npm run test",
-    "prepare": "husky"
+    "prepare": "husky",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "@fontsource-variable/geist": "^5.3.0",
@@ -63,5 +63,5 @@
     "vitest": "^5.1.0"
   },
   "author": "Inacio Rodrigues",
-  "description": "Aplicação web (React + TypeScript) da plataforma de reservas de serviços Bulir: clientes contratam serviços de prestadores com saldo em Kwanzas."
+  "description": "Aplica\u00e7\u00e3o web (React + TypeScript) da plataforma de reservas de servi\u00e7os Bulir: clientes contratam servi\u00e7os de prestadores com saldo em Kwanzas."
 }
