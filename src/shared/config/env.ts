@@ -13,4 +13,6 @@ function readApiUrl(): string {
 export const env = {
   apiUrl: readApiUrl(),
   apiBaseUrl: `${readApiUrl()}/api/v1`,
+  /** Mostra atalhos para as contas de demonstração (seed) no ecrã de login. */
+  showDemoAccounts: import.meta.env.VITE_DEMO_ACCOUNTS !== 'false',
 } as const
