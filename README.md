@@ -111,10 +111,9 @@ npm run dev              # http://localhost:5173
 
 > A API só aceita CORS de origens configuradas (`http://localhost:5173` por omissão). Use essa porta.
 
-| Variável             | Descrição                                                     |
-| -------------------- | ------------------------------------------------------------- |
-| `VITE_API_URL`       | URL base da API, sem `/api/v1` (ex.: `http://localhost:3000`) |
-| `VITE_DEMO_ACCOUNTS` | `true` mostra atalhos para as contas de demonstração no login |
+| Variável       | Descrição                                                     |
+| -------------- | ------------------------------------------------------------- |
+| `VITE_API_URL` | URL base da API, sem `/api/v1` (ex.: `http://localhost:3000`) |
 
 ### Contas de demonstração (seed da API)
 
@@ -149,7 +148,7 @@ O CI (GitHub Actions) corre typecheck, lint, formato, testes e build em cada pus
 ## Deploy (Vercel)
 
 1. Importar o repositório na Vercel (framework Vite é detetado; `vercel.json` já tem o rewrite da SPA e headers).
-2. Definir `VITE_API_URL` com a URL da API em produção (e `VITE_DEMO_ACCOUNTS=true` para facilitar a avaliação).
+2. Definir `VITE_API_URL` com a URL da API em produção.
 3. Na API em produção, acrescentar o domínio da Vercel a `CORS_ORIGINS` (configuração, sem alterar código).
 
 ## Notas sobre a API

@@ -1,18 +1,16 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Loader2, LogIn, Sparkles } from 'lucide-react'
+import { Loader2, LogIn } from 'lucide-react'
 import { useForm, useWatch } from 'react-hook-form'
 import { getErrorMessage, toApiError } from '@/shared/api/errors'
 import { fieldA11y } from '@/shared/components/field-a11y'
 import { FormField } from '@/shared/components/FormField'
 import { PasswordInput } from '@/shared/components/PasswordInput'
-import { env } from '@/shared/config/env'
 import { loginSchema, type LoginInput, type LoginValues } from '@/shared/contract/schemas'
 import type { User } from '@/shared/contract/types'
 import { useCountdown } from '@/shared/hooks/useCountdown'
 import { Alert, AlertDescription } from '@/shared/ui/alert'
 import { Button } from '@/shared/ui/button'
 import { Input } from '@/shared/ui/input'
-import { DEMO_ACCOUNTS, DEMO_PASSWORD } from '../demo-accounts'
 import { useLogin } from '../hooks'
 
 export function LoginForm({ onSuccess }: { onSuccess: (user: User) => void }) {
@@ -37,10 +35,6 @@ export function LoginForm({ onSuccess }: { onSuccess: (user: User) => void }) {
       form.setFocus('password')
     }
   })
-
-  const fillDemo = (demoIdentifier: string) => {
-    form.reset({ identifier: demoIdentifier, password: DEMO_PASSWORD })
-  }
 
   const busy = isSubmitting || login.isPending
   const errorMessage = login.error ? getErrorMessage(login.error) : null
@@ -86,29 +80,6 @@ export function LoginForm({ onSuccess }: { onSuccess: (user: User) => void }) {
         {busy ? <Loader2 className="animate-spin" /> : <LogIn />}
         {cooldown.active ? `Aguarde ${cooldown.secondsLeft} s` : 'Entrar'}
       </Button>
-
-      {env.showDemoAccounts && (
-        <div className="rounded-lg border border-dashed p-3">
-          <p className="mb-2 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
-            <Sparkles className="size-3.5" aria-hidden="true" /> Contas de demonstração (senha{' '}
-            {DEMO_PASSWORD})
-          </p>
-          <div className="grid gap-2 sm:grid-cols-3">
-            {DEMO_ACCOUNTS.map((account) => (
-              <Button
-                key={account.identifier}
-                type="button"
-                variant="outline"
-                className="h-auto flex-col items-start gap-0 py-2 text-left whitespace-normal"
-                onClick={() => fillDemo(account.identifier)}
-              >
-                <span>{account.label}</span>
-                <span className="text-xs font-normal text-muted-foreground">{account.hint}</span>
-              </Button>
-            ))}
-          </div>
-        </div>
-      )}
     </form>
   )
 }
