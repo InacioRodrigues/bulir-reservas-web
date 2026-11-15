@@ -11,12 +11,12 @@ export interface NavItem {
 const NAV: Record<Role, NavItem[]> = {
   CLIENT: [
     { to: paths.catalog, label: 'Serviços', icon: Store },
-    { to: paths.bookings, label: 'Reservas', icon: CalendarCheck },
+    { to: paths.bookings, label: 'Histórico', icon: CalendarCheck },
     { to: paths.wallet, label: 'Carteira', icon: Wallet },
   ],
   PROVIDER: [
     { to: paths.myServices, label: 'Meus serviços', icon: BriefcaseBusiness },
-    { to: paths.bookings, label: 'Reservas', icon: CalendarCheck },
+    { to: paths.bookings, label: 'Histórico', icon: CalendarCheck },
     { to: paths.wallet, label: 'Carteira', icon: Wallet },
   ],
 }
