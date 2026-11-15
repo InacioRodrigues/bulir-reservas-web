@@ -5,7 +5,7 @@ Desafio 1 ([`bulir-reservas-api`](https://github.com/InacioRodrigues/bulir-reser
 serviços de prestadores e pagam com o saldo da carteira, em Kwanzas.
 
 - **Produção:** _a preencher após o deploy na Vercel_
-- **API:** _a preencher (URL da API em produção)_ · documentação Scalar em `<API>/reference`
+- **API:** https://bulir-reservas-api-15sk.onrender.com · documentação Scalar em [https://bulir-reservas-api-15sk.onrender.com/reference](https://bulir-reservas-api-15sk.onrender.com/reference)
 
 ![Catálogo de serviços](docs/screenshots/catalogo.png)
 
