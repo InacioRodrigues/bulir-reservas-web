@@ -3,12 +3,13 @@ import { http, HttpResponse } from 'msw'
 import { API, apiError, clientUser, ok } from '@/test/fixtures'
 import { renderWithProviders } from '@/test/render'
 import { server } from '@/test/server'
+import type { User } from '@/shared/contract/types'
 import { useSessionStore } from '@/shared/session/session-store'
 import { LoginForm } from './LoginForm'
 
 describe('LoginForm', () => {
   it('valida campos obrigatórios sem chamar a API', async () => {
-    const onSuccess = vi.fn()
+    const onSuccess = vi.fn<(user: User) => void>()
     const { user } = renderWithProviders(<LoginForm onSuccess={onSuccess} />)
     await user.click(screen.getByRole('button', { name: 'Entrar' }))
     expect(await screen.findByText('Indique o e-mail ou o NIF')).toBeInTheDocument()
@@ -26,7 +27,7 @@ describe('LoginForm', () => {
         )
       }),
     )
-    const onSuccess = vi.fn()
+    const onSuccess = vi.fn<(user: User) => void>()
     const { user } = renderWithProviders(<LoginForm onSuccess={onSuccess} />)
 
     await user.type(screen.getByLabelText('E-mail ou NIF'), '004512345LA041')
@@ -47,7 +48,7 @@ describe('LoginForm', () => {
         }),
       ),
     )
-    const { user } = renderWithProviders(<LoginForm onSuccess={vi.fn()} />)
+    const { user } = renderWithProviders(<LoginForm onSuccess={vi.fn<(user: User) => void>()} />)
     await user.type(screen.getByLabelText('E-mail ou NIF'), 'ana@exemplo.ao')
     await user.type(screen.getByLabelText('Senha'), 'errada')
     await user.click(screen.getByRole('button', { name: 'Entrar' }))
@@ -65,7 +66,7 @@ describe('LoginForm', () => {
         }),
       ),
     )
-    const { user } = renderWithProviders(<LoginForm onSuccess={vi.fn()} />)
+    const { user } = renderWithProviders(<LoginForm onSuccess={vi.fn<(user: User) => void>()} />)
     await user.type(screen.getByLabelText('E-mail ou NIF'), 'ana@exemplo.ao')
     await user.type(screen.getByLabelText('Senha'), 'x')
     await user.click(screen.getByRole('button', { name: 'Entrar' }))
