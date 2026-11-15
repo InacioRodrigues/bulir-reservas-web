@@ -67,6 +67,9 @@ src/
 
 ### Decisões importantes
 
+- **Histórico = transações em que o utilizador participa.** Cliente vê o que contratou, prestador o que lhe
+  contrataram (serviço, prestador, cliente, valor, estado). Mostrar transações de terceiros seria uma fuga de dados;
+  a API guarda todas as reservas e a decisão está explicada no README da API.
 - **Server state vs client state.** Tudo o que vem da API vive no TanStack Query; o Zustand guarda só o que é do
   browser (tokens, tema). O saldo mostrado é sempre o de `GET /auth/me`.
 - **Dinheiro nunca é `number`.** A API usa strings decimais (`"1500.00"`); o front converte para cêntimos em
