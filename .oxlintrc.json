@@ -36,6 +36,13 @@
       "rules": {
         "react/only-export-components": "off"
       }
+    },
+    {
+      "files": ["src/test/**", "**/*.test.ts", "**/*.test.tsx"],
+      "rules": {
+        "react/only-export-components": "off",
+        "typescript/no-extraneous-class": "off"
+      }
     }
   ],
   "ignorePatterns": ["dist", "coverage"]

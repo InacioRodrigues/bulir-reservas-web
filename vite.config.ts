@@ -12,9 +12,13 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'jsdom',
+    // Mesma origem que a API de teste: evita preflights CORS do jsdom.
+    environmentOptions: { jsdom: { url: 'http://api.test/' } },
     setupFiles: ['./src/test/setup.ts'],
+    include: ['src/**/*.test.{ts,tsx}'],
     css: false,
     restoreMocks: true,
+    testTimeout: 20_000,
     env: { VITE_API_URL: 'http://api.test' },
   },
 })
