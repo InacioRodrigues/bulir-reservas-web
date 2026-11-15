@@ -9,12 +9,14 @@ import { FullPageSpinner } from '@/shared/components/FullPageSpinner'
 import { paths } from '@/shared/config/paths'
 import { AppLayout } from './layouts/AppLayout'
 import { AuthLayout } from './layouts/AuthLayout'
+import { RootLayout } from './layouts/RootLayout'
 import { NotFoundPage } from './NotFoundPage'
 import { RouteErrorBoundary } from './RouteErrorBoundary'
 
 /** Páginas carregadas a pedido (code splitting por rota). */
 export const routes: RouteObject[] = [
   {
+    element: <RootLayout />,
     errorElement: <RouteErrorBoundary />,
     hydrateFallbackElement: <FullPageSpinner />,
     children: [
