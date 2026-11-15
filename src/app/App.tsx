@@ -1,7 +1,12 @@
+import { RouterProvider } from 'react-router/dom'
+import { AppProviders } from './providers'
+import { queryClient } from './query-client'
+import { router } from './router'
+
 export function App() {
   return (
-    <main className="grid min-h-svh place-items-center p-4">
-      <h1 className="text-2xl font-semibold">Bulir Reservas</h1>
-    </main>
+    <AppProviders client={queryClient}>
+      <RouterProvider router={router} />
+    </AppProviders>
   )
 }
