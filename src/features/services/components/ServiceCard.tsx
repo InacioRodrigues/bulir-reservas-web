@@ -43,7 +43,7 @@ export function ServiceCard({ service, showProvider = false, actions }: ServiceC
       </CardContent>
       <CardFooter className="flex flex-wrap items-center justify-between gap-3">
         <Amount value={service.price} className="text-lg font-semibold text-foreground" />
-        {actions && <div className="flex gap-2">{actions}</div>}
+        {actions && <div className="ml-auto flex gap-2">{actions}</div>}
       </CardFooter>
     </Card>
   )
