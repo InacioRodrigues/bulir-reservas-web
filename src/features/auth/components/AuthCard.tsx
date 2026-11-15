@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { useDocumentTitle } from '@/shared/hooks/useDocumentTitle'
 import {
   Card,
   CardContent,
@@ -19,6 +20,7 @@ export function AuthCard({
   footer: ReactNode
   children: ReactNode
 }) {
+  useDocumentTitle(title)
   return (
     <Card className="w-full max-w-md">
       <CardHeader>

@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { useDocumentTitle } from '@/shared/hooks/useDocumentTitle'
 
 export function PageHeader({
   title,
@@ -9,6 +10,7 @@ export function PageHeader({
   description?: ReactNode
   actions?: ReactNode
 }) {
+  useDocumentTitle(title)
   return (
     <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
       <div className="space-y-1">
