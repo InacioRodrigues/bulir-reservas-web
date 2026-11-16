@@ -4,7 +4,7 @@ Aplicação web (React + TypeScript) da plataforma de contratação de serviços
 Desafio 1 ([`bulir-reservas-api`](https://github.com/InacioRodrigues/bulir-reservas-api)): clientes contratam
 serviços de prestadores e pagam com o saldo da carteira, em Kwanzas.
 
-- **Produção:** _a preencher após o deploy na Vercel_
+- **Produção:** https://bulir-reservas-web.vercel.app
 - **API:** https://bulir-reservas-api-15sk.onrender.com · documentação Scalar em [https://bulir-reservas-api-15sk.onrender.com/reference](https://bulir-reservas-api-15sk.onrender.com/reference)
 
 ![Catálogo de serviços](docs/screenshots/catalogo.png)
